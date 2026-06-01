@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rinkal Kaklotar — Senior eCommerce Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1F3C;
+    --navy-mid: #1A3A6B;
+    --accent: #2563EB;
+    --accent-light: #3B82F6;
+    --gold: #F59E0B;
+    --teal: #0D9488;
+    --white: #FFFFFF;
+    --off-white: #F8F9FC;
+    --gray-50: #F1F5F9;
+    --gray-100: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --gray-800: #1E293B;
+    --text: #0F172A;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--navy); text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem; font-weight: 500; color: var(--gray-600);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--navy); color: var(--white) !important;
+    padding: 0.5rem 1.25rem; border-radius: 6px;
+    font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 4rem 6rem;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute; top: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3);
+    color: #93C5FD; font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.875rem; border-radius: 100px; margin-bottom: 1.5rem;
+    font-family: var(--font-mono); letter-spacing: 0.04em;
+  }
+  .hero-tag::before { content: '●'; font-size: 0.5rem; color: #4ADE80; }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 800; line-height: 1.1;
+    color: var(--white); letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .highlight {
+    color: transparent;
+    background: linear-gradient(135deg, #60A5FA, #34D399);
+    -webkit-background-clip: text; background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem; color: #94A3B8; line-height: 1.75;
+    margin-bottom: 2.5rem; font-weight: 300;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem; text-decoration: none;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8);
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem; text-decoration: none;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: rgba(37,99,235,0.4); }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--white); letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-number span { color: var(--accent-light); }
+
+  .stat-label {
+    font-size: 0.82rem; color: #64748B; margin-top: 0.4rem;
+    font-weight: 400; line-height: 1.4;
+  }
+
+  /* ── SECTION BASE ─────────────────────────────── */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--navy); letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem; color: var(--gray-600); max-width: 560px;
+    line-height: 1.7; margin-bottom: 3.5rem; font-weight: 300;
+  }
+
+  /* ── TECH STACK ───────────────────────────────── */
+  .stack-section { background: var(--off-white); }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .stack-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: 10px; padding: 1.1rem 1rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+    transition: all 0.2s;
+  }
+  .stack-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.08);
+  }
+
+  .stack-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700;
+    font-family: var(--font-mono);
+  }
+
+  .stack-name { font-size: 0.875rem; font-weight: 500; color: var(--gray-800); }
+  .stack-type { font-size: 0.75rem; color: var(--gray-400); }
+
+  /* ── PROJECTS ─────────────────────────────────── */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100); border-radius: 14px;
+    overflow: hidden; transition: all 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 16px 40px rgba(37,99,235,0.1);
+    transform: translateY(-3px);
+  }
+
+  .project-banner {
+    height: 6px;
+  }
+
+  .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+  .project-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .project-tag {
+    font-size: 0.72rem; font-weight: 500;
+    padding: 0.25rem 0.625rem; border-radius: 4px;
+    font-family: var(--font-mono); letter-spacing: 0.04em;
+  }
+
+  .project-link {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: var(--gray-50); border: 1px solid var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--gray-400);
+    font-size: 0.75rem; transition: all 0.15s;
+  }
+  .project-link:hover { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.5rem; line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.875rem; color: var(--gray-600);
+    line-height: 1.65; margin-bottom: 1.25rem; flex: 1; font-weight: 300;
+  }
+
+  .project-metrics {
+    display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem;
+  }
+
+  .metric {
+    background: var(--off-white); border: 1px solid var(--gray-100);
+    border-radius: 6px; padding: 0.35rem 0.625rem;
+    font-size: 0.75rem; font-weight: 600; color: var(--navy);
+    font-family: var(--font-mono);
+  }
+
+  .project-stack {
+    display: flex; flex-wrap: wrap; gap: 0.375rem;
+  }
+
+  .tech-pill {
+    font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 4px;
+    font-family: var(--font-mono); font-weight: 500;
+  }
+
+  /* ── EXPERIENCE ───────────────────────────────── */
+  .exp-section { background: var(--navy); }
+  .exp-section .section-title { color: var(--white); }
+  .exp-section .section-sub { color: #64748B; }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0.5rem; bottom: 0;
+    width: 1px; background: rgba(255,255,255,0.08);
+  }
+
+  .exp-item {
+    position: relative; margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .exp-dot {
+    position: absolute; left: -2.375rem; top: 0.35rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--navy);
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
+  }
+
+  .exp-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap;
+  }
+
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 1.05rem; font-weight: 700; color: var(--white);
+  }
+
+  .exp-company {
+    font-size: 0.875rem; color: #60A5FA; font-weight: 500; margin-top: 0.2rem;
+  }
+
+  .exp-dates {
+    font-size: 0.78rem; color: #475569; font-family: var(--font-mono);
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    padding: 0.25rem 0.75rem; border-radius: 4px; white-space: nowrap;
+  }
+
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    font-size: 0.875rem; color: #94A3B8; line-height: 1.7;
+    padding: 0.3rem 0; padding-left: 1.1rem; position: relative; font-weight: 300;
+  }
+  .exp-bullets li::before {
+    content: '→'; position: absolute; left: 0; color: #2563EB; font-size: 0.75rem;
+  }
+  .exp-bullets strong { color: #E2E8F0; font-weight: 500; }
+
+  /* ── ACHIEVEMENTS ─────────────────────────────── */
+  .ach-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+  }
+
+  .ach-card {
+    background: var(--off-white); border: 1px solid var(--gray-100);
+    border-radius: 12px; padding: 1.5rem; text-align: center;
+    transition: all 0.2s;
+  }
+  .ach-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(37,99,235,0.08); }
+
+  .ach-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 800; line-height: 1;
+    color: var(--navy); letter-spacing: -0.04em; margin-bottom: 0.375rem;
+  }
+  .ach-number span { color: var(--accent); }
+
+  .ach-label { font-size: 0.8rem; color: var(--gray-600); line-height: 1.4; font-weight: 400; }
+
+  /* ── CONTACT ──────────────────────────────────── */
+  .contact-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #0F2952 100%);
+    position: relative; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; bottom: -30%; right: -5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 60%);
+  }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .contact-left .section-title { color: var(--white); }
+  .contact-left .section-sub { color: #64748B; max-width: 100%; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; padding: 1rem 1.25rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(37,99,235,0.15); border-color: rgba(37,99,235,0.4);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  .contact-link-text { font-size: 0.875rem; font-weight: 500; color: #E2E8F0; }
+  .contact-link-sub { font-size: 0.78rem; color: #475569; margin-top: 0.1rem; }
+
+  .availability-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 2rem;
+  }
+
+  .avail-status {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2);
+    color: #4ADE80; font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.875rem; border-radius: 100px; margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+  }
+  .avail-status::before { content: '●'; font-size: 0.5rem; }
+
+  .avail-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.75rem; line-height: 1.3;
+  }
+
+  .avail-desc { font-size: 0.875rem; color: #64748B; line-height: 1.7; margin-bottom: 1.5rem; font-weight: 300; }
+
+  .avail-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: var(--white);
+    padding: 0.75rem 1.5rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.9rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .avail-btn:hover { background: #1D4ED8; }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    background: #070E1A; padding: 2rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: 1rem; color: #334155; text-decoration: none;
+  }
+  .footer-logo span { color: #1E3A5F; }
+  .footer-text { font-size: 0.8rem; color: #1E293B; }
+
+  /* ── ANIMATIONS ───────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag { animation: fadeUp 0.5s ease both; }
+  .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-desc { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-btns { animation: fadeUp 0.5s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.5s 0.4s ease both; }
+
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    .hero { padding: 7rem 2rem 5rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    section { padding: 4rem 2rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .ach-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .ach-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RK<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:mandaviyarinkal@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Available for work · Trail, BC, Canada</div>
+      <h1>Senior<br><span class="highlight">eCommerce</span><br>Developer</h1>
+      <p class="hero-desc">
+        7+ years building enterprise eCommerce platforms — Magento 2, SAP Commerce Cloud, PHP, and cloud-native infrastructure. I turn complex requirements into fast, scalable, measurable results.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work →</a>
+        <a href="mailto:mandaviyarinkal@gmail.com" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">7<span>+</span></div>
+        <div class="stat-label">Years of eCommerce development experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">85<span>%</span></div>
+        <div class="stat-label">PageSpeed improvement on Grapetree UK</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10<span>k+</span></div>
+        <div class="stat-label">SKUs synced via ERP with zero degradation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">International storefronts delivered end-to-end</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section style="padding: 3.5rem 4rem; background: var(--off-white);">
+  <div class="section-inner">
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="ach-number">85<span>%</span></div>
+        <div class="ach-label">Core Web Vitals improvement · Grapetree UK</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-number">98<span>%</span></div>
+        <div class="ach-label">Uptime maintained across 3 major upgrades</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-number">3</div>
+        <div class="ach-label">Commercial Magento 2 extensions published</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-number">95<span>%</span></div>
+        <div class="ach-label">Client satisfaction rate · production support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="stack-section" id="stack">
+  <div class="section-inner">
+    <p class="section-label">// technical skills</p>
+    <h2 class="section-title">My Stack</h2>
+    <p class="section-sub">Enterprise eCommerce technologies I work with daily — from platform to infrastructure.</p>
+    <div class="stack-grid">
+
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#FEF3C7; color:#92400E;">M2</div>
+        <div class="stack-name">Magento 2</div>
+        <div class="stack-type">eCommerce Platform</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#DBEAFE; color:#1E40AF;">SAP</div>
+        <div class="stack-name">SAP Commerce</div>
+        <div class="stack-type">Enterprise Commerce</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#F3E8FF; color:#6B21A8;">PHP</div>
+        <div class="stack-name">PHP 8.x</div>
+        <div class="stack-type">Backend Language</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#DCFCE7; color:#166534;">GQL</div>
+        <div class="stack-name">GraphQL</div>
+        <div class="stack-type">API Layer</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#FEE2E2; color:#991B1B;">ES</div>
+        <div class="stack-name">Elasticsearch</div>
+        <div class="stack-type">Search & Analytics</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#FEE2E2; color:#7F1D1D;">RDS</div>
+        <div class="stack-name">Redis</div>
+        <div class="stack-type">Cache & Queue</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#E0F2FE; color:#075985;">AWS</div>
+        <div class="stack-name">AWS</div>
+        <div class="stack-type">Cloud Infrastructure</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#F0FDF4; color:#14532D;">🐳</div>
+        <div class="stack-name">Docker / K8S</div>
+        <div class="stack-type">Containerisation</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#EFF6FF; color:#1E3A8A;">React</div>
+        <div class="stack-name">React / Next.js</div>
+        <div class="stack-type">Frontend Framework</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#F0FDFA; color:#134E4A;">TW</div>
+        <div class="stack-name">Tailwind CSS</div>
+        <div class="stack-type">UI Styling</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#FFF7ED; color:#7C2D12;">SQL</div>
+        <div class="stack-name">MySQL / MariaDB</div>
+        <div class="stack-type">Database</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" style="background:#FDF4FF; color:#701A75;">CI</div>
+        <div class="stack-name">CI/CD Pipelines</div>
+        <div class="stack-type">DevOps</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">// selected work</p>
+    <h2 class="section-title">Key Projects</h2>
+    <p class="section-sub">Real platforms delivered for real clients — with measurable outcomes.</p>
+    <div class="projects-grid">
+
+      <!-- Grapetree -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #2563EB, #06B6D4);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#EFF6FF; color:#1E40AF;">Hyvä Migration</span>
+            <a href="https://www.grapetree.co.uk" target="_blank" class="project-link">↗</a>
+          </div>
+          <h3 class="project-title">Grapetree UK</h3>
+          <p class="project-desc">Full Hyvä headless theme migration with React/Alpine.js + Tailwind CSS + GraphQL API layer. Core Web Vitals focus with Elasticsearch tuning and Redis caching.</p>
+          <div class="project-metrics">
+            <span class="metric">+85% PageSpeed</span>
+            <span class="metric">GraphQL API</span>
+            <span class="metric">Core Web Vitals</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">Magento 2</span>
+            <span class="tech-pill" style="background:#F0FDFA; color:#134E4A;">Hyvä</span>
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">React</span>
+            <span class="tech-pill" style="background:#FEE2E2; color:#991B1B;">Elasticsearch</span>
+            <span class="tech-pill" style="background:#F3E8FF; color:#6B21A8;">Redis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Play2Solar -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #F59E0B, #EF4444);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#FEF3C7; color:#92400E;">Full Build</span>
+            <a href="https://play2.solar" target="_blank" class="project-link">↗</a>
+          </div>
+          <h3 class="project-title">Play2Solar — France</h3>
+          <p class="project-desc">Sole architect and developer. Built from requirements to production — custom checkout engine, dynamic pricing, multi-currency. Zero third-party modules. Docker CI/CD pipeline.</p>
+          <div class="project-metrics">
+            <span class="metric">71% PageSpeed</span>
+            <span class="metric">0 ext. modules</span>
+            <span class="metric">Docker CI/CD</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">Magento 2</span>
+            <span class="tech-pill" style="background:#F3E8FF; color:#6B21A8;">PHP 8</span>
+            <span class="tech-pill" style="background:#F0FDF4; color:#14532D;">Docker</span>
+            <span class="tech-pill" style="background:#DCFCE7; color:#166534;">GraphQL</span>
+            <span class="tech-pill" style="background:#FFF7ED; color:#7C2D12;">MySQL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redirector Extension -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #8B5CF6, #EC4899);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#F5F3FF; color:#5B21B6;">Open Source</span>
+            <a href="https://commercemarketplace.adobe.com/aureate-labs-redirector.html" target="_blank" class="project-link">↗</a>
+          </div>
+          <h3 class="project-title">Aureate Redirector</h3>
+          <p class="project-desc">Commercial Magento 2 extension published on Adobe Commerce Marketplace. Mass URL redirection management with custom PHP backend, API design, and full developer documentation.</p>
+          <div class="project-metrics">
+            <span class="metric">Adobe Marketplace</span>
+            <span class="metric">Published</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">Magento 2</span>
+            <span class="tech-pill" style="background:#F3E8FF; color:#6B21A8;">PHP</span>
+            <span class="tech-pill" style="background:#FEF3C7; color:#92400E;">REST API</span>
+            <span class="tech-pill" style="background:#F0FDFA; color:#134E4A;">PHPUnit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERP Sync -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #0D9488, #2563EB);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#F0FDFA; color:#134E4A;">Integration</span>
+          </div>
+          <h3 class="project-title">ERP Product Sync Engine</h3>
+          <p class="project-desc">Real-time automated catalogue, pricing, and stock synchronisation for 10,000+ SKUs via ERP API. Redis queue management — zero server degradation under load.</p>
+          <div class="project-metrics">
+            <span class="metric">10k+ SKUs</span>
+            <span class="metric">Real-time sync</span>
+            <span class="metric">Redis queued</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">Magento 2</span>
+            <span class="tech-pill" style="background:#FEE2E2; color:#7F1D1D;">Redis</span>
+            <span class="tech-pill" style="background:#FFF7ED; color:#7C2D12;">MySQL</span>
+            <span class="tech-pill" style="background:#FEF3C7; color:#92400E;">ERP API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-storefront -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #1E293B, #334155);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#F8FAFC; color:#475569;">Multi-region</span>
+          </div>
+          <h3 class="project-title">4 International Storefronts</h3>
+          <p class="project-desc">End-to-end delivery across UK, US, India and France — custom PHP modules, ERP connectors, multi-currency, multi-language, payment gateway integration. All shipped on time.</p>
+          <div class="project-metrics">
+            <span class="metric">UK · US · IN · FR</span>
+            <span class="metric">ERP integrated</span>
+            <span class="metric">On time</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">Magento 2</span>
+            <span class="tech-pill" style="background:#F3E8FF; color:#6B21A8;">PHP</span>
+            <span class="tech-pill" style="background:#DCFCE7; color:#166534;">GraphQL</span>
+            <span class="tech-pill" style="background:#E0F2FE; color:#075985;">AWS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security & Perf -->
+      <div class="project-card">
+        <div class="project-banner" style="background: linear-gradient(90deg, #DC2626, #F59E0B);"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag" style="background:#FFF1F2; color:#881337;">Performance</span>
+          </div>
+          <h3 class="project-title">Web Performance Overhaul</h3>
+          <p class="project-desc">Rebuilt under-performing forms and pages for a BC client. WCAG 2.1 compliance, security patching, corrupt DB table resolution. 89% LCP/CLS improvement measured in Search Console.</p>
+          <div class="project-metrics">
+            <span class="metric">+89% LCP/CLS</span>
+            <span class="metric">WCAG 2.1</span>
+            <span class="metric">100% uptime</span>
+          </div>
+          <div class="project-stack">
+            <span class="tech-pill" style="background:#F3E8FF; color:#6B21A8;">PHP</span>
+            <span class="tech-pill" style="background:#EFF6FF; color:#1E40AF;">JavaScript</span>
+            <span class="tech-pill" style="background:#F0FDFA; color:#134E4A;">MySQL</span>
+            <span class="tech-pill" style="background:#FFF7ED; color:#7C2D12;">WCAG</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="section-inner">
+    <p class="section-label" style="color:#2563EB;">// career history</p>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">A decade of eCommerce delivery across agencies, startups, and enterprise clients.</p>
+
+    <div class="timeline">
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Contract eCommerce Developer</div>
+            <div class="exp-company">Tech Resource Limited · Trail, BC, Canada</div>
+          </div>
+          <div class="exp-dates">Oct 2025 – Mar 2026</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Rebuilt under-performing pages and forms — achieving <strong>89% improvement in LCP and CLS</strong> Core Web Vitals scores.</li>
+          <li>Implemented full <strong>WCAG 2.1 accessibility compliance</strong> across all public-facing interfaces.</li>
+          <li>Resolved corrupt database tables, applied security patches, maintained <strong>100% uptime</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Senior Magento Backend Developer</div>
+            <div class="exp-company">MagePix Infotech · India (Remote)</div>
+          </div>
+          <div class="exp-dates">Apr 2024 – Nov 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Sole architect of Play2Solar France — custom checkout engine, dynamic pricing, <strong>GraphQL/REST API layer, Docker CI/CD</strong>.</li>
+          <li>Zero third-party modules — wrote all coding standards, enforced via <strong>SonarCloud quality gates</strong>. Achieved 71% PageSpeed.</li>
+          <li>Implemented <strong>OAuth2-secured API endpoints</strong> documented via OpenAPI specification.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Senior Magento, WordPress & Hyvä Developer</div>
+            <div class="exp-company">Aureate Labs · India</div>
+          </div>
+          <div class="exp-dates">Apr 2022 – Apr 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Delivered <strong>4 international storefronts</strong> (UK, India, US, France) end-to-end with ERP integration, multi-currency, multi-language.</li>
+          <li>Led Hyvä migration for Grapetree UK — <strong>85%+ PageSpeed improvement</strong>, Elasticsearch + Redis tuning for sub-second catalogue loads.</li>
+          <li>3 major platform upgrades with <strong>98% uptime</strong>, MySQL/MariaDB migration planning, rollback scripting, CloudWatch monitoring.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Magento Backend Developer</div>
+            <div class="exp-company">Dynamic Dreamz · Surat, India</div>
+          </div>
+          <div class="exp-dates">Mar 2020 – Mar 2022</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Full ownership of 4 eCommerce platforms — architecture, PHP development, <strong>AWS/Linux server deployment</strong>, ongoing maintenance.</li>
+          <li>ERP API integration syncing <strong>10,000+ SKUs</strong> in real-time using Redis queue management — zero server degradation.</li>
+          <li>SQL query rewrites and shell automation scripts — deployment time cut significantly, noticed by clients proactively.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Magento Developer</div>
+            <div class="exp-company">Sankhala Info Tech LLP · India</div>
+          </div>
+          <div class="exp-dates">Apr 2018 – Mar 2020</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Contributed to <strong>3 commercially released Magento 2 extensions</strong> — PHP backend, API design, PHPUnit/MFTF test coverage, PHP_CodeSniffer QA.</li>
+          <li>Maintained <strong>95%+ client satisfaction</strong> across 20+ monthly production support tickets — Elasticsearch, Redis, MySQL deadlock triage.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p class="section-label">// get in touch</p>
+        <h2 class="section-title">Let's Build Something</h2>
+        <p class="section-sub">Open to senior developer roles, eCommerce architecture contracts, and remote/hybrid opportunities across Canada.</p>
+        <div class="contact-links">
+          <a href="mailto:mandaviyarinkal@gmail.com" class="contact-link">
+            <div class="contact-icon" style="background:rgba(37,99,235,0.15);">✉</div>
+            <div>
+              <div class="contact-link-text">mandaviyarinkal@gmail.com</div>
+              <div class="contact-link-sub">Email — preferred for project enquiries</div>
+            </div>
+          </a>
+          <a href="tel:+12505588119" class="contact-link">
+            <div class="contact-icon" style="background:rgba(16,185,129,0.15);">📞</div>
+            <div>
+              <div class="contact-link-text">+1 (250) 558-8119</div>
+              <div class="contact-link-sub">Available Mon–Fri, 9am–6pm MST</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/rinkalkaklotar-589731169" target="_blank" class="contact-link">
+            <div class="contact-icon" style="background:rgba(14,118,188,0.15);">in</div>
+            <div>
+              <div class="contact-link-text">linkedin.com/in/rinkalkaklotar</div>
+              <div class="contact-link-sub">LinkedIn — connect for opportunities</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="availability-card">
+          <div class="avail-status">Open to opportunities</div>
+          <h3 class="avail-title">Currently available for senior eCommerce roles in Canada</h3>
+          <p class="avail-desc">Based in Trail, BC — open to remote, hybrid, and relocation to Toronto or Vancouver. 7+ years of enterprise delivery. Available immediately.</p>
+          <a href="mailto:mandaviyarinkal@gmail.com" class="avail-btn">Send me a message →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">RK<span>.</span></a>
+  <p class="footer-text">© 2026 Rinkal Kaklotar · Trail, BC, Canada</p>
+</footer>
+
+</body>
+</html>
